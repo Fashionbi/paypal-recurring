@@ -100,6 +100,27 @@ module PayPal
 
       attr_accessor :uri
 
+      # Set PayPal's API username.
+      #
+      attr_accessor :username
+
+      # Set PayPal's API password.
+      #
+      attr_accessor :password
+
+      # Set PayPal's API signature.
+      #
+      attr_accessor :signature
+
+      # Set seller id. Will be used to verify IPN.
+      #
+      #
+      attr_accessor :seller_id
+
+      # The seller e-mail. Will be used to verify IPN.
+      #
+      attr_accessor :email
+
       # Do a POST request to PayPal API.
       # The +method+ argument is the name of the API method you want to invoke.
       # For instance, if you want to request a new checkout token, you may want
@@ -158,9 +179,9 @@ module PayPal
 
       def default_params
         {
-          :username    => PayPal::Recurring.username,
-          :password    => PayPal::Recurring.password,
-          :signature   => PayPal::Recurring.signature,
+          :username    => username,
+          :password    => password,
+          :signature   => signature,
           :version     => PayPal::Recurring.api_version
         }
       end

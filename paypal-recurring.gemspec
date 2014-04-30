@@ -24,4 +24,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "pry"
   s.add_development_dependency "awesome_print"
   s.add_development_dependency "activesupport"
+
+  s.add_development_dependency "guard"
+  s.add_development_dependency "guard-rspec"
 end

@@ -5,7 +5,13 @@ describe PayPal::Recurring::Response::Details do
     use_vcr_cassette "details/success"
 
     subject {
-      ppr = PayPal::Recurring.new(:token => "EC-08C2125544495393T")
+      ppr = PayPal::Recurring.new({
+        :username    => "fnando.vieira+seller_api1.gmail.com",
+        :password    => "PRTZZX6JDACB95SA",
+        :signature   => "AJnjtLN0ozBP-BF2ZJrj5sfbmGAxAnf5tev1-MgK5Z8IASmtj-Fw.5pt",
+        :seller_id   => "F2RM85WS56YX2",
+        :email       => "fnando.vieira+seller.gmail.com"
+      },{ :token => "EC-08C2125544495393T" })
       ppr.checkout_details
     }
 
@@ -28,7 +34,13 @@ describe PayPal::Recurring::Response::Details do
   context "when cancelled" do
     use_vcr_cassette "details/cancelled"
     subject {
-      ppr = PayPal::Recurring.new(:token => "EC-8J298813NS092694P")
+      ppr = PayPal::Recurring.new({
+        :username    => "fnando.vieira+seller_api1.gmail.com",
+        :password    => "PRTZZX6JDACB95SA",
+        :signature   => "AJnjtLN0ozBP-BF2ZJrj5sfbmGAxAnf5tev1-MgK5Z8IASmtj-Fw.5pt",
+        :seller_id   => "F2RM85WS56YX2",
+        :email       => "fnando.vieira+seller.gmail.com"
+      },{ :token => "EC-8J298813NS092694P" })
       ppr.checkout_details
     }
 

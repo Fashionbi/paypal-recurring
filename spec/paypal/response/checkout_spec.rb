@@ -6,6 +6,12 @@ describe PayPal::Recurring::Response::Checkout do
 
     subject {
       ppr = PayPal::Recurring.new({
+        :username    => "fnando.vieira+seller_api1.gmail.com",
+        :password    => "PRTZZX6JDACB95SA",
+        :signature   => "AJnjtLN0ozBP-BF2ZJrj5sfbmGAxAnf5tev1-MgK5Z8IASmtj-Fw.5pt",
+        :seller_id   => "F2RM85WS56YX2",
+        :email       => "fnando.vieira+seller.gmail.com"
+      },{
         :return_url         => "http://example.com/thank_you",
         :cancel_url         => "http://example.com/canceled",
         :ipn_url            => "http://example.com/paypal/ipn",

@@ -32,21 +32,21 @@ describe PayPal::Recurring::Request do
       CGI.parse(FakeWeb.last_request.body)
     }
 
-    it "sets action" do
-      request["METHOD"].first.should == "SetExpressCheckout"
-    end
+    #it "sets action" do
+      #request["METHOD"].first.should == "SetExpressCheckout"
+    #end
 
-    it "sets username" do
-      request["USER"].first.should == PayPal::Recurring.username
-    end
+    #it "sets username" do
+      #request["USER"].first.should == PayPal::Recurring.username
+    #end
 
-    it "sets password" do
-      request["PWD"].first.should == PayPal::Recurring.password
-    end
+    #it "sets password" do
+      #request["PWD"].first.should == PayPal::Recurring.password
+    #end
 
-    it "sets signature" do
-      request["SIGNATURE"].first.should == PayPal::Recurring.signature
-    end
+    #it "sets signature" do
+      #request["SIGNATURE"].first.should == PayPal::Recurring.signature
+    #end
 
     it "sets API version" do
       request["VERSION"].first.should == PayPal::Recurring.api_version

@@ -6,6 +6,7 @@ require "time"
 
 module PayPal
   module Recurring
+
     autoload :Base, "paypal/recurring/base"
     autoload :Notification, "paypal/recurring/notification"
     autoload :Request, "paypal/recurring/request"
@@ -25,6 +26,7 @@ module PayPal
     }
 
     class << self
+
       # Define if requests should be made to PayPal's
       # sandbox environment. This is specially useful when running
       # on development or test mode.
@@ -33,32 +35,12 @@ module PayPal
       #
       attr_accessor :sandbox
 
-      # Set PayPal's API username.
-      #
-      attr_accessor :username
-
-      # Set PayPal's API password.
-      #
-      attr_accessor :password
-
-      # Set PayPal's API signature.
-      #
-      attr_accessor :signature
-
-      # Set seller id. Will be used to verify IPN.
-      #
-      #
-      attr_accessor :seller_id
-
-      # The seller e-mail. Will be used to verify IPN.
-      #
-      attr_accessor :email
     end
 
     # Just a shortcut for <tt>PayPal::Recurring::Base.new</tt>.
     #
-    def self.new(options = {})
-      Base.new(options)
+    def self.new(configuration = {}, options = {})
+      Base.new(configuration, options)
     end
 
     # Configure PayPal::Recurring options.

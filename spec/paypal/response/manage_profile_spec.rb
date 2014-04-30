@@ -1,7 +1,13 @@
 require "spec_helper"
 
 describe PayPal::Recurring::Response::ManageProfile do
-  let(:paypal) { PayPal::Recurring.new(:profile_id => "I-W4FNTE6EXJ2W") }
+  let(:paypal) { PayPal::Recurring.new({
+        :username    => "fnando.vieira+seller_api1.gmail.com",
+        :password    => "PRTZZX6JDACB95SA",
+        :signature   => "AJnjtLN0ozBP-BF2ZJrj5sfbmGAxAnf5tev1-MgK5Z8IASmtj-Fw.5pt",
+        :seller_id   => "F2RM85WS56YX2",
+        :email       => "fnando.vieira+seller.gmail.com"
+      },{ :profile_id => "I-W4FNTE6EXJ2W" }) }
 
   context "suspending" do
     context "when successful" do

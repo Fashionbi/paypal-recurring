@@ -36,14 +36,36 @@ module PayPal
       attr_accessor :trial_period
       attr_accessor :trial_amount
 
-      def initialize(options = {})
+      #   ppr = PayPal::Recurring.new({
+      #     :username    => "test",
+      #     :password    => "test",
+      #     :signature   => "234sd34",
+      #     :seller_id   => "1222",
+      #     :email       => "test@example.com"
+      #   },{
+      #     :return_url         => "http://example.com/checkout/thank_you",
+      #     :cancel_url         => "http://example.com/checkout/canceled",
+      #     :ipn_url            => "http://example.com/paypal/ipn",
+      #     :description        => "Awesome - Monthly Subscription",
+      #     :amount             => "9.00",
+      #     :currency           => "USD"
+      #   })
+      #
+      def initialize(configuration = {}, options = {})
         options.each {|name, value| send("#{name}=", value)}
+        @configuration = configuration
       end
 
       # Just a shortcut convenience.
       #
       def request # :nodoc:
-        @request ||= Request.new
+        if @request
+          return @request
+        else
+          @request = Request.new
+          @configuration.each { |name, value| @request.send("#{name}=", value) }
+          return @request
+        end
       end
 
       # Request a checkout token.

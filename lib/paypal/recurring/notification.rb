@@ -5,6 +5,8 @@ module PayPal
 
       attr_reader :params
 
+      attr_accessor :options
+
       mapping({
         :type             => :txn_type,
         :transaction_id   => :txn_id,
@@ -24,8 +26,9 @@ module PayPal
         :payer_email      => :payer_email
       })
 
-      def initialize(params = {})
+      def initialize(params = {}, options = {})
         self.params = params
+        self.options = options
       end
 
       def params=(params)
@@ -47,7 +50,7 @@ module PayPal
       end
 
       def request
-        @request ||= PayPal::Recurring::Request.new.tap do |request|
+        @request ||= PayPal::Recurring.new(options).request.tap do |request|
           request.uri = URI.parse("#{PayPal::Recurring.site_endpoint}?cmd=_notify-validate")
         end
       end
@@ -57,7 +60,7 @@ module PayPal
       end
 
       def valid?
-        completed? && verified? && email == PayPal::Recurring.email
+        completed? && verified?
       end
 
       def completed?

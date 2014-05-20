@@ -108,6 +108,31 @@ module PayPal
         request.run(:checkout, params)
       end
 
+      def express_checkout
+        params = collect(
+          :brand_name,
+          :first_name,
+          :locale,
+          :landing_page,
+          :last_name,
+          :amount,
+          :return_url,
+          :cancel_url,
+          :currency,
+          :description,
+          :ipn_url,
+          :item_category,
+          :item_name,
+          :item_amount,
+          :item_quantity
+        ).merge(
+          :payment_action => "Sale",
+          :no_shipping => 1
+        )
+
+        request.run(:checkout, params)
+      end
+
       # Suspend a recurring profile.
       # Suspended profiles can be reactivated.
       #
